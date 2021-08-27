@@ -4,14 +4,27 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { useState } from 'react';
 
 function CheckBox(props) {
     const {options}=props
+    const arr=[]
     const handleChange=(e)=>{
-        console.log(e.target.value)
+        let val=e.target.value
+        console.log(val)
+        let ind=arr.indexOf(val)
+        
+        if(ind>-1){
+            arr.splice(ind,1)
+        }
+        else{
+            arr.push(val)
+            arr.push("  ")
+        }
+        console.log(arr)
+        props.updateResponse(props.id,arr)
     }
-    
-    console.log(options)
+
     return (
         <FormControl component="fieldset">
     
